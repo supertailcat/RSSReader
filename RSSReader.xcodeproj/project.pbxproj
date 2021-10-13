@@ -14,10 +14,13 @@
 		2B1691DB2714207C0092322E /* SubscribeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691DA2714207C0092322E /* SubscribeViewController.m */; };
 		2B1691DE2714208B0092322E /* MineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691DD2714208B0092322E /* MineViewController.m */; };
 		2B1691E127142CAD0092322E /* FavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691E027142CAD0092322E /* FavoriteViewController.m */; };
-		2B1691E7271437D90092322E /* RSSNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691E6271437D90092322E /* RSSNews.m */; };
-		2B1691EA271437EF0092322E /* NewsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691E9271437EF0092322E /* NewsManager.m */; };
+		2B1691E7271437D90092322E /* STCRSSItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691E6271437D90092322E /* STCRSSItem.m */; };
+		2B1691EA271437EF0092322E /* ItemsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691E9271437EF0092322E /* ItemsManager.m */; };
 		2B1691ED271439DD0092322E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691EC271439DD0092322E /* DetailViewController.m */; };
 		2B1691F327152C4E0092322E /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691F227152C4E0092322E /* Parser.m */; };
+		2B1691FC271687770092322E /* DeviceDefine.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691FB271687770092322E /* DeviceDefine.m */; };
+		2B1691FF2716B2C60092322E /* SubscribeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1691FE2716B2C60092322E /* SubscribeManager.m */; };
+		2B1692032716B9E70092322E /* DefaultSubscribe.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B1692022716B9E70092322E /* DefaultSubscribe.plist */; };
 		4A88DCEBF832E37ABDC5AC93 /* libPods-RSSReader.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0B9BA3D1BB84FCF24C91CD /* libPods-RSSReader.a */; };
 /* End PBXBuildFile section */
 
@@ -37,15 +40,20 @@
 		2B1691DD2714208B0092322E /* MineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MineViewController.m; sourceTree = "<group>"; };
 		2B1691DF27142CAD0092322E /* FavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteViewController.h; sourceTree = "<group>"; };
 		2B1691E027142CAD0092322E /* FavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteViewController.m; sourceTree = "<group>"; };
-		2B1691E5271437D90092322E /* RSSNews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSNews.h; sourceTree = "<group>"; };
-		2B1691E6271437D90092322E /* RSSNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSSNews.m; sourceTree = "<group>"; };
-		2B1691E8271437EF0092322E /* NewsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewsManager.h; sourceTree = "<group>"; };
-		2B1691E9271437EF0092322E /* NewsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewsManager.m; sourceTree = "<group>"; };
+		2B1691E5271437D90092322E /* STCRSSItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = STCRSSItem.h; sourceTree = "<group>"; };
+		2B1691E6271437D90092322E /* STCRSSItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = STCRSSItem.m; sourceTree = "<group>"; };
+		2B1691E8271437EF0092322E /* ItemsManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemsManager.h; sourceTree = "<group>"; };
+		2B1691E9271437EF0092322E /* ItemsManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemsManager.m; sourceTree = "<group>"; };
 		2B1691EB271439DD0092322E /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		2B1691EC271439DD0092322E /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		2B1691F127152C4E0092322E /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		2B1691F227152C4E0092322E /* Parser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
 		2B1691F7271569D40092322E /* TableViewReloadDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewReloadDelegate.h; sourceTree = "<group>"; };
+		2B1691FA271687770092322E /* DeviceDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeviceDefine.h; sourceTree = "<group>"; };
+		2B1691FB271687770092322E /* DeviceDefine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeviceDefine.m; sourceTree = "<group>"; };
+		2B1691FD2716B2C60092322E /* SubscribeManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SubscribeManager.h; sourceTree = "<group>"; };
+		2B1691FE2716B2C60092322E /* SubscribeManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SubscribeManager.m; sourceTree = "<group>"; };
+		2B1692022716B9E70092322E /* DefaultSubscribe.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultSubscribe.plist; sourceTree = "<group>"; };
 		2C0B9BA3D1BB84FCF24C91CD /* libPods-RSSReader.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RSSReader.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E8459713EB1AA4E78E640AD /* Pods-RSSReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSSReader.debug.xcconfig"; path = "Target Support Files/Pods-RSSReader/Pods-RSSReader.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,18 +91,21 @@
 		2B1691BC27141A9D0092322E /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				2B1691F527155F030092322E /* Tool */,
 				2B1691F6271569830092322E /* Protocol */,
+				2B1691F427155ED60092322E /* Controller */,
 				2B1691CE27141A9F0092322E /* Info.plist */,
 				2B1691C927141A9F0092322E /* Assets.xcassets */,
 				2B1691CF27141A9F0092322E /* main.m */,
 				2B1691BD27141A9D0092322E /* AppDelegate.h */,
 				2B1691BE27141A9D0092322E /* AppDelegate.m */,
-				2B1691F527155F030092322E /* Tool */,
-				2B1691F427155ED60092322E /* Controller */,
-				2B1691E5271437D90092322E /* RSSNews.h */,
-				2B1691E6271437D90092322E /* RSSNews.m */,
-				2B1691E8271437EF0092322E /* NewsManager.h */,
-				2B1691E9271437EF0092322E /* NewsManager.m */,
+				2B1691E5271437D90092322E /* STCRSSItem.h */,
+				2B1691E6271437D90092322E /* STCRSSItem.m */,
+				2B1691E8271437EF0092322E /* ItemsManager.h */,
+				2B1691E9271437EF0092322E /* ItemsManager.m */,
+				2B1691FD2716B2C60092322E /* SubscribeManager.h */,
+				2B1691FE2716B2C60092322E /* SubscribeManager.m */,
+				2B1692022716B9E70092322E /* DefaultSubscribe.plist */,
 			);
 			path = RSSReader;
 			sourceTree = "<group>";
@@ -121,6 +132,8 @@
 			children = (
 				2B1691F127152C4E0092322E /* Parser.h */,
 				2B1691F227152C4E0092322E /* Parser.m */,
+				2B1691FA271687770092322E /* DeviceDefine.h */,
+				2B1691FB271687770092322E /* DeviceDefine.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -208,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B1691CA27141A9F0092322E /* Assets.xcassets in Resources */,
+				2B1692032716B9E70092322E /* DefaultSubscribe.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,15 +257,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B1691FC271687770092322E /* DeviceDefine.m in Sources */,
 				2B1691F327152C4E0092322E /* Parser.m in Sources */,
 				2B1691E127142CAD0092322E /* FavoriteViewController.m in Sources */,
-				2B1691EA271437EF0092322E /* NewsManager.m in Sources */,
+				2B1691EA271437EF0092322E /* ItemsManager.m in Sources */,
 				2B1691ED271439DD0092322E /* DetailViewController.m in Sources */,
 				2B1691BF27141A9D0092322E /* AppDelegate.m in Sources */,
-				2B1691E7271437D90092322E /* RSSNews.m in Sources */,
+				2B1691E7271437D90092322E /* STCRSSItem.m in Sources */,
 				2B1691DB2714207C0092322E /* SubscribeViewController.m in Sources */,
 				2B1691DE2714208B0092322E /* MineViewController.m in Sources */,
 				2B1691D027141A9F0092322E /* main.m in Sources */,
+				2B1691FF2716B2C60092322E /* SubscribeManager.m in Sources */,
 				2B1691D8271420580092322E /* HomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +394,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZN22SV24UP;
 				INFOPLIST_FILE = RSSReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -396,6 +413,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = ZN22SV24UP;
 				INFOPLIST_FILE = RSSReader/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

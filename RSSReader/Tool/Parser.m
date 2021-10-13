@@ -7,10 +7,11 @@
 
 #import "Parser.h"
 #import <RSSAtomKit/RSSAtomKit.h>
+#import <RSSAtomKit/RSSPerson.h>
 
 @implementation Parser
 
-- (void)parseByURL:(NSURL *)url addNewsBlock:(void (^)(RSSNews *news))addNewsBlock reloadNewsBlock:(void (^)(void))reloadNewsBlock {
+- (void)parseByURL:(NSURL *)url addItemBlock:(void (^)(STCRSSItem *item))addItemBlock reloadItemsBlock:(void (^)(void))reloadItemsBlock {
     RSSAtomKit *atomKit = [[RSSAtomKit alloc] initWithSessionConfiguration:[NSURLSessionConfiguration ephemeralSessionConfiguration]];
     [atomKit parseFeedFromURL:url completionBlock:^(RSSFeed *feed, NSArray *items, NSError *error) {
         if (error) {
@@ -18,12 +19,13 @@
             return;
         }
         for (RSSItem *item in items) {
-            RSSNews *news = [[RSSNews alloc] init];
-            news.title = item.title;
-            news.itemDescription = item.itemDescription;
-            addNewsBlock(news);
+            STCRSSItem *stcItem = [[STCRSSItem alloc] init];
+            stcItem.title = item.title;
+            stcItem.itemDescription = item.author.email;
+
+            addItemBlock(stcItem);
         }
-        reloadNewsBlock();
+        reloadItemsBlock();
     } completionQueue:nil];
 }
 

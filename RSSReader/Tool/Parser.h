@@ -6,13 +6,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RSSNews.h"
+#import "STCRSSItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Parser : NSObject
 
-- (void)parseByURL:(NSURL *)url addNewsBlock:(void (^)(RSSNews *news))addNewsBlock reloadNewsBlock:(void (^)(void))reloadNewsBlock;
+- (void)parseByURL:(NSURL *)url addItemBlock:(void (^)(STCRSSItem *item))addItemBlock reloadItemsBlock:(void (^)(void))reloadItemsBlock;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  RSSNews.h
+//  RSSItem.h
 //  RSSReader
 //
 //  Created by 于沛尧 on 2021/10/11.
@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RSSNews : NSObject
+@interface STCRSSItem : NSObject
 
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *itemDescription;

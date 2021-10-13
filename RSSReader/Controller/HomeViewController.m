@@ -7,7 +7,7 @@
 
 #import "HomeViewController.h"
 #import "DetailViewController.h"
-#import "NewsManager.h"
+#import "ItemsManager.h"
 #import "TableViewReloadDelegate.h"
 
 @interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -39,12 +39,22 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tableView;
-    [NewsManager sharedManager].delegate = self;
+    [ItemsManager sharedManager].delegate = self;
+    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(refresh:)];
+    self.navigationItem.rightBarButtonItem = editBtn;
+}
+
+- (void)refresh:(UIButton *)btn {
+    [[ItemsManager sharedManager] updateItems];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.navigationController.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[NewsManager sharedManager] getNewsNumber];
+    return [[ItemsManager sharedManager] getItemsNumber];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,7 +63,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = [[NewsManager sharedManager] getNewsWithIndex:indexPath.row].title;
+    cell.textLabel.text = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row].title;
     return cell;
 }
 
@@ -61,7 +71,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DetailViewController *detailVC = [[DetailViewController alloc] init];
-    detailVC.news = [[NewsManager sharedManager] getNewsWithIndex:indexPath.row];
+    detailVC.item = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row];
+    self.navigationController.tabBarController.tabBar.hidden = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
