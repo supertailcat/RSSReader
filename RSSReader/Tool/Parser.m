@@ -22,9 +22,10 @@
             STCRSSItem *stcItem = [[STCRSSItem alloc] init];
             stcItem.title = item.title;
             stcItem.itemDescription = item.author.email;
+            
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
-            stcItem.publicationDate = [dateFormatter stringFromDate:item.publicationDate];
+            stcItem.publicationDate = [[dateFormatter stringFromDate:item.publicationDate] stringByAppendingString:feed.title];
             addItemBlock(stcItem);
         }
         reloadItemsBlock();
