@@ -16,8 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<TableViewReloadDelegate> delegate;
 
 + (instancetype)sharedManager;
-- (NSUInteger)getItemsNumber;
-- (STCRSSItem *)getItemWithIndex:(NSUInteger)index;
+- (NSUInteger)itemsCount;
+- (STCRSSItem *)itemAtIndex:(NSUInteger)index;
 - (void)updateItems;
 
 @end

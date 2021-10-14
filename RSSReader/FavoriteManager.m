@@ -30,14 +30,14 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *favoritePath = [documentsDirectory stringByAppendingPathComponent:@"Favorite.archiver"];
-    if(![[NSFileManager defaultManager] fileExistsAtPath:favoritePath]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:favoritePath]) {
         _itemsArray = [NSMutableArray array];
     } else {
         _itemsArray = [NSKeyedUnarchiver unarchiveObjectWithFile:favoritePath];
     }
 }
 
-- (STCRSSItem *)getFavoriteItemWithIndex:(NSUInteger)index {
+- (STCRSSItem *)favoriteItemAtIndex:(NSUInteger)index {
     return (index <= _itemsArray.count - 1) ? _itemsArray[index] : nil;
 }
 
@@ -45,11 +45,9 @@
     return _itemsArray;
 }
 
-- (NSUInteger)getFavoriteItemsNumber {
+- (NSUInteger)favoriteItemsCount {
     return _itemsArray.count;
 }
-
-
 
 - (void)addFavoriteItem:(STCRSSItem *)item complicationBlock:(void (^)(BOOL))addItemBlock {
     [_itemsArray insertObject:item atIndex:0];

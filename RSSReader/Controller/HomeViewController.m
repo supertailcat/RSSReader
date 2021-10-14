@@ -59,7 +59,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[ItemsManager sharedManager] getItemsNumber];
+    return [[ItemsManager sharedManager] itemsCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,8 +68,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
-    cell.textLabel.text = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row].title;
-    cell.detailTextLabel.text = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row].publicationDate;
+    cell.textLabel.text = [[ItemsManager sharedManager] itemAtIndex:indexPath.row].title;
+    cell.detailTextLabel.text = [[ItemsManager sharedManager] itemAtIndex:indexPath.row].publicationDate;
     return cell;
 }
 
@@ -77,7 +77,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DetailViewController *detailVC = [[DetailViewController alloc] init];
-    detailVC.item = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row];
+    detailVC.item = [[ItemsManager sharedManager] itemAtIndex:indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

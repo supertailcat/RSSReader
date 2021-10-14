@@ -40,8 +40,6 @@
     UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(edit:)];
     self.navigationItem.leftBarButtonItem = editBtn;
     self.tableView;
-    [self.view addSubview:_tableView];
-//    [FavoriteManager sharedManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,7 +66,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[FavoriteManager sharedManager] getFavoriteItemsNumber];
+    return [[FavoriteManager sharedManager] favoriteItemsCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -77,14 +75,13 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = [[FavoriteManager sharedManager] getFavoriteItemWithIndex:indexPath.row].title;
+    cell.textLabel.text = [[FavoriteManager sharedManager] favoriteItemAtIndex:indexPath.row].title;
     return cell;
 }
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
@@ -109,7 +106,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DetailViewController *detailVC = [[DetailViewController alloc] init];
-    detailVC.item = [[FavoriteManager sharedManager] getFavoriteItemWithIndex:indexPath.row];
+    detailVC.item = [[FavoriteManager sharedManager] favoriteItemAtIndex:indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

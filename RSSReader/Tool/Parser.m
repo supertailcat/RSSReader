@@ -20,11 +20,10 @@
         }
         for (RSSItem *item in items) {
             STCRSSItem *stcItem = [[STCRSSItem alloc] init];
-            stcItem.title = item.title;
-            stcItem.itemDescription = item.author.email;
-            
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+            stcItem.title = item.title;
+            stcItem.itemDescription = item.author.email;
             stcItem.publicationDate = [[dateFormatter stringFromDate:item.publicationDate] stringByAppendingString:feed.title];
             addItemBlock(stcItem);
         }

@@ -12,12 +12,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SubscribeManager : NSObject
 
 + (instancetype)sharedManager;
-- (NSArray *)getURLs;
+- (NSUInteger)URLsCount;
+- (NSString *)URLsAtIndex:(NSUInteger)index;
 - (void)addURL:(NSString *)URL atIndex:(NSUInteger)index;
 - (void)removeURLAtIndex:(NSInteger)index;
 - (void)modifyURL:(NSString *)URL atIndex:(NSUInteger)index;
 - (void)exchangeURLAtIndex:(NSUInteger)index1 withURLAtIndex:(NSUInteger)index2;
-- (NSUInteger)getURLsNumber;
 
 @end
 

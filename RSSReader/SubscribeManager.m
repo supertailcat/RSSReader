@@ -29,7 +29,7 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"Subscribe.plist"];
-    if(![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:plistPath]) {
         NSString *userDataPath = [[NSBundle mainBundle] pathForResource:@"DefaultSubscribe" ofType:@"plist"];
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] initWithContentsOfFile:userDataPath];
         _URLsArray = [dic objectForKey:@"URL List"];
@@ -41,12 +41,12 @@
     
 }
 
-- (NSUInteger)getURLsNumber {
+- (NSUInteger)URLsCount {
     return _URLsArray.count;
 }
 
-- (NSArray *)getURLs {
-    return _URLsArray;
+- (NSString *)URLsAtIndex:(NSUInteger)index {
+    return (index <= _URLsArray.count - 1) ? _URLsArray[index] : nil;
 }
 
 - (void)addURL:(NSString *)URL atIndex:(NSUInteger)index {

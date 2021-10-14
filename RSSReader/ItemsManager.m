@@ -32,11 +32,11 @@
     [self updateItems];
 }
 
-- (NSUInteger)getItemsNumber {
+- (NSUInteger)itemsCount {
     return _itemsArray.count;
 }
 
-- (STCRSSItem *)getItemWithIndex:(NSUInteger)index {
+- (STCRSSItem *)itemAtIndex:(NSUInteger)index {
     return (index <= _itemsArray.count - 1) ? _itemsArray[index] : nil;
 }
 
@@ -49,9 +49,8 @@
     [_itemsArray removeAllObjects];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Parser *parser = [[Parser alloc] init];
-        NSArray *urls = [[SubscribeManager sharedManager] getURLs];
-        for (NSString *url in urls) {
-            [parser parseByURL:[[NSURL alloc] initWithString:url] addItemBlock:^(STCRSSItem *item) {
+        for(int index = 0; index < [[SubscribeManager sharedManager] URLsCount]; index++) {
+            [parser parseByURL:[[NSURL alloc] initWithString:[[SubscribeManager sharedManager] URLsAtIndex:index]] addItemBlock:^(STCRSSItem *item) {
                 [self addItem:item];
             } reloadItemsBlock:^{
                 [self didUpdateItems];

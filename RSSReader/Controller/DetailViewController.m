@@ -62,11 +62,12 @@
             message = @"收藏成功";
         }
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
-                                                                           message:message
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
+                                                                       message:message
+                                                                preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                                  handler:^(UIAlertAction * action) {
-                                                                  }];
+                                                              handler:^(UIAlertAction * action) {
+            
+        }];
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
     }];

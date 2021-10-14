@@ -94,10 +94,10 @@
 		2B1691BC27141A9D0092322E /* RSSReader */ = {
 			isa = PBXGroup;
 			children = (
+				2B1691CE27141A9F0092322E /* Info.plist */,
 				2B1691F527155F030092322E /* Tool */,
 				2B1691F6271569830092322E /* Protocol */,
 				2B1691F427155ED60092322E /* Controller */,
-				2B1691CE27141A9F0092322E /* Info.plist */,
 				2B1692022716B9E70092322E /* DefaultSubscribe.plist */,
 				2B1691C927141A9F0092322E /* Assets.xcassets */,
 				2B1691CF27141A9F0092322E /* main.m */,

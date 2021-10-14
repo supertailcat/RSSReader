@@ -8,7 +8,7 @@
 #import "SubscribeViewController.h"
 #import "SubscribeManager.h"
 
-@interface SubscribeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface SubscribeViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -40,8 +40,6 @@
     UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithTitle:@"新增" style:UIBarButtonItemStylePlain target:self action:@selector(add:)];
     self.navigationItem.rightBarButtonItem = addBtn;
     self.tableView;
-    [self.view addSubview:_tableView];
-    [SubscribeManager sharedManager];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,7 +67,7 @@
         
     UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction * action) {
-        [[SubscribeManager sharedManager] addURL:alert.textFields[0].text atIndex:[[SubscribeManager sharedManager] getURLsNumber]];
+        [[SubscribeManager sharedManager] addURL:alert.textFields[0].text atIndex:[[SubscribeManager sharedManager] URLsCount]];
         [self->_tableView reloadData];
     }];
     UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
@@ -85,7 +83,7 @@
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[SubscribeManager sharedManager] getURLsNumber];
+    return [[SubscribeManager sharedManager] URLsCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,14 +92,13 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
-    cell.textLabel.text = [[SubscribeManager sharedManager] getURLs][indexPath.row];
+    cell.textLabel.text = [[SubscribeManager sharedManager] URLsAtIndex:indexPath.row];
     return cell;
 }
 
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
-
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
@@ -137,7 +134,7 @@
                                                          handler:^(UIAlertAction * action) {
     }];
     [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-        textField.text = [[SubscribeManager sharedManager] getURLs][indexPath.row];
+        textField.text = [[SubscribeManager sharedManager] URLsAtIndex:indexPath.row];
     }];
     
     [alert addAction:okAction];

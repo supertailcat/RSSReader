@@ -14,9 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface FavoriteManager : NSObject
 
 + (instancetype)sharedManager;
-- (STCRSSItem *)getFavoriteItemWithIndex:(NSUInteger)index;
-- (NSArray *)getFavoriteItems;
-- (NSUInteger)getFavoriteItemsNumber;
+- (STCRSSItem *)favoriteItemAtIndex:(NSUInteger)index;
+- (NSUInteger)favoriteItemsCount;
 - (void)addFavoriteItem:(STCRSSItem *)item complicationBlock:(void (^)(BOOL))addItemBlock;
 - (void)removeFavoriteItemAtIndex:(NSUInteger)index;
 - (void)exchangeFavoriteItemAtIndex:(NSUInteger)index1 withFavoriteItemAtIndex:(NSUInteger)index2;
