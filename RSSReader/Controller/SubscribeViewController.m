@@ -49,10 +49,8 @@
         [_tableView setEditing:YES animated:YES];
         self.navigationItem.leftBarButtonItem.title = @"完成";
     } else {
-        //to save
         [_tableView setEditing:NO animated:YES];
         self.navigationItem.leftBarButtonItem.title = @"编辑";
-        
     }
 }
 
@@ -61,25 +59,20 @@
                                                                    message:@"新增RUL……"
                                                             preferredStyle:UIAlertControllerStyleAlert];
         
-        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
+        [[SubscribeManager sharedManager] addURL:alert.textFields[0].text atIndex:[[SubscribeManager sharedManager] getURLsNumber]];
+        [self->_tableView reloadData];
+    }];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * action) {
-                                                              //响应事件
-                                                              //得到文本信息
-            [[SubscribeManager sharedManager] addURL:alert.textFields[0].text atIndex:[[SubscribeManager sharedManager] getURLsNumber]];
-            [self->_tableView reloadData];
-        }];
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * action) {
-                                                                 //响应事件
-//                                                                 NSLog(@"action = %@", alert.textFields);
-                                                             }];
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            
-        }];
-        
-        [alert addAction:okAction];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+    }];
+    
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDataSource
@@ -102,26 +95,22 @@
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"修改"
                                                                    message:@"修改RUL……"
                                                             preferredStyle:UIAlertControllerStyleAlert];
-        
-        UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+    
+    UIAlertAction* okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * action) {
+        [[SubscribeManager sharedManager] modifyURL:alert.textFields[0].text atIndex:indexPath.row];
+        [self->_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+    }];
+    UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
                                                          handler:^(UIAlertAction * action) {
-                                                              //响应事件
-                                                              //得到文本信息
-            [[SubscribeManager sharedManager] modifyURL:alert.textFields[0].text atIndex:indexPath.row];
-            [self->_tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationLeft];
-        }];
-        UIAlertAction* cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel
-                                                             handler:^(UIAlertAction * action) {
-                                                                 //响应事件
-//                                                                 NSLog(@"action = %@", alert.textFields);
-                                                             }];
-        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
-            textField.text = [[SubscribeManager sharedManager] getURLs][indexPath.row];
-        }];
-        
-        [alert addAction:okAction];
-        [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+    }];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.text = [[SubscribeManager sharedManager] getURLs][indexPath.row];
+    }];
+    
+    [alert addAction:okAction];
+    [alert addAction:cancelAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -138,11 +127,8 @@
 
 -(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    //修改数据源
     [[SubscribeManager sharedManager] exchangeURLAtIndex:sourceIndexPath.row withURLAtIndex:destinationIndexPath.row];
-    //让表视图对应的行进行移动
     [tableView exchangeSubviewAtIndex:sourceIndexPath.row withSubviewAtIndex:destinationIndexPath.row];
-
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -153,21 +139,16 @@
             break;
         case UITableViewCellEditingStyleDelete:
         {
-            //修改数据源，在刷新 tableView
             [[SubscribeManager sharedManager] deleteURLAtIndex:indexPath.row];
-
-            //让表视图删除对应的行
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
             break;
         case UITableViewCellEditingStyleInsert:
         {
             [[SubscribeManager sharedManager] addURL:@"aa" atIndex:indexPath.row];
-            //让表视图添加对应的行
             [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
             break;
-
         default:
             break;
     }
