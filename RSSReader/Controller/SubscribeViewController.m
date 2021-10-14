@@ -45,11 +45,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    self.navigationController.tabBarController.tabBar.hidden = NO;
+    self.hidesBottomBarWhenPushed = YES;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.tabBarController.tabBar.hidden = YES;
+- (void)viewDidDisappear:(BOOL)animated {
+    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (void)edit:(UIButton *)btn {

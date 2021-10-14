@@ -19,4 +19,12 @@
 
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.hidesBottomBarWhenPushed = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    self.hidesBottomBarWhenPushed = NO;
+}
+
 @end
