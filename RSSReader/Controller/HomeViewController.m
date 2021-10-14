@@ -53,6 +53,10 @@
     self.navigationController.tabBarController.tabBar.hidden = NO;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.tabBarController.tabBar.hidden = YES;
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[ItemsManager sharedManager] getItemsNumber];
@@ -74,7 +78,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     DetailViewController *detailVC = [[DetailViewController alloc] init];
     detailVC.item = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row];
-    self.navigationController.tabBarController.tabBar.hidden = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
