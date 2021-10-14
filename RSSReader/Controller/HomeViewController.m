@@ -40,12 +40,13 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
     self.tableView;
     [ItemsManager sharedManager].delegate = self;
-    UIBarButtonItem *editBtn = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(refresh:)];
-    self.navigationItem.rightBarButtonItem = editBtn;
+    UIBarButtonItem *refreshBtn = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonItemStylePlain target:self action:@selector(refresh:)];
+    self.navigationItem.rightBarButtonItem = refreshBtn;
 }
 
 - (void)refresh:(UIButton *)btn {
     [[ItemsManager sharedManager] updateItems];
+    [_tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -61,9 +62,10 @@
     NSString *cellID = @"HomeCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellID];
     }
     cell.textLabel.text = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row].title;
+    cell.detailTextLabel.text = [[ItemsManager sharedManager] getItemWithIndex:indexPath.row].publicationDate;
     return cell;
 }
 

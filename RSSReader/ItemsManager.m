@@ -11,7 +11,7 @@
 
 @interface ItemsManager ()
 
-@property (nonatomic, strong) NSMutableArray *itemArray;
+@property (atomic, strong) NSMutableArray *itemArray;
 @property (nonatomic, weak) STCRSSItem *currentItem;
 
 @end
@@ -49,7 +49,7 @@
 - (void)updateItems {
     //todo
     [_itemArray removeAllObjects];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Parser *parser = [[Parser alloc] init];
         NSArray *urls = [[SubscribeManager sharedManager] getURLs];
         for (NSString *url in urls) {
@@ -63,6 +63,8 @@
 }
 
 - (void)didUpdateItems {
+    NSSortDescriptor *publicationDateDesc = [NSSortDescriptor sortDescriptorWithKey:@"publicationDate" ascending:NO];
+    _itemArray = [[_itemArray sortedArrayUsingDescriptors:@[publicationDateDesc]] mutableCopy];
     [self.delegate reloadTableView];
 }
 @end
