@@ -23,6 +23,7 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
             stcItem.title = item.title;
+            stcItem.linkURL = item.linkURL;
             stcItem.itemDescription = item.author.email;
             stcItem.publicationDate = [[dateFormatter stringFromDate:item.publicationDate] stringByAppendingString:feed.title];
             addItemBlock(stcItem);

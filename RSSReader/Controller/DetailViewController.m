@@ -47,7 +47,11 @@
     [plainHTML appendString:@"</body>"];
     [plainHTML appendString:@"</html>"];
     
-    [_webView loadHTMLString:plainHTML baseURL:nil];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"mode"] isEqualToString:@"simple"]) {
+        [_webView loadHTMLString:plainHTML baseURL:nil];
+    } else {
+        [_webView loadRequest:[NSURLRequest requestWithURL:_item.linkURL]];
+    }
     [self.view addSubview:_webView];
     
     UIBarButtonItem *favoriteBtn = [[UIBarButtonItem alloc] initWithTitle:@"收藏" style:UIBarButtonItemStylePlain target:self action:@selector(addToFavorite:)];
@@ -74,31 +78,16 @@
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    // 设置字体
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"mode"] isEqualToString:@"origin"]) {
+        return;
+    }
+    //设置字体
     NSString *fontFamilyStr = @"document.getElementsByTagName('body')[0].style.fontFamily='PingFangSC-Medium';";
     [webView evaluateJavaScript:fontFamilyStr completionHandler:nil];
     //设置颜色
     [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#000000'" completionHandler:nil];
     //修改字体大小
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '300%'"completionHandler:nil];
-//    //修改图片大小
-//    NSString *screenWidth = [[NSString alloc] initWithFormat:@"%f", ScreenWidth];
-//    NSMutableString *js = [NSMutableString string];
-//    [js appendString:@"var script = document.createElement('script');"
-//    "script.type = 'text/javascript';"
-//    "script.text = \"function ResizeImages(){ "
-//    "var myimg,oldwidth;"
-//     "var maxwidth = "];
-//    [js appendString:screenWidth];
-//    [js appendString:@";"
-//    "for(i=0;i <document.images.length;i++){"
-//    "myimg = document.images[i];"
-//    "oldwidth = myimg.width;"
-//    "myimg.width = maxwidth;"
-//    "}"
-//    "}\";"
-//     "document.getElementsByTagName('head')[0].appendChild(script);ResizeImages();"];
-//    [ webView evaluateJavaScript:js completionHandler:nil];
+    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"completionHandler:nil];
     
 }
 

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface STCRSSItem : NSObject<NSCoding>
 
 @property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) NSURL *linkURL;
 @property (nonatomic, copy) NSString *itemDescription;
 @property (nonatomic, strong) NSString *publicationDate;
 
