@@ -11,7 +11,7 @@
 
 @interface ItemsManager ()
 
-@property (atomic, strong) NSMutableArray *itemArray;
+@property (atomic, strong) NSMutableArray *itemArray;//应该有比atomic更好的方法，可以考虑创建一个队列用于add
 @property (nonatomic, weak) STCRSSItem *currentItem;
 
 @end
@@ -49,7 +49,7 @@
 - (void)updateItems {
     //todo
     [_itemArray removeAllObjects];
-    dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         Parser *parser = [[Parser alloc] init];
         NSArray *urls = [[SubscribeManager sharedManager] getURLs];
         for (NSString *url in urls) {
