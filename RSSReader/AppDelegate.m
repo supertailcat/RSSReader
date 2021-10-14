@@ -32,8 +32,7 @@
     //订阅
     SubscribeViewController *subscribeVC = [[SubscribeViewController alloc] init];
     subscribeVC.title = @"订阅";
-    UITabBarItem* subscribeTabItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:2];
-    subscribeTabItem.title = subscribeVC.title;
+    UITabBarItem* subscribeTabItem = [[UITabBarItem alloc] initWithTitle:@"订阅" image:[UIImage imageNamed:@"subscribe"] tag:2];
     subscribeVC.tabBarItem = subscribeTabItem;
     UINavigationController *subscribeNav = [[UINavigationController alloc] initWithRootViewController:subscribeVC];
     subscribeNav.navigationBar.translucent = NO;
@@ -41,8 +40,7 @@
     //收藏
     FavoriteViewController *favoriteVC = [[FavoriteViewController alloc] init];
     favoriteVC.title = @"收藏";
-    UITabBarItem* favoriteTabItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemFavorites tag:3];
-    favoriteTabItem.title = favoriteVC.title;
+    UITabBarItem* favoriteTabItem = [[UITabBarItem alloc] initWithTitle:@"收藏" image:[UIImage imageNamed:@"favorite"] tag:3];
     favoriteVC.tabBarItem = favoriteTabItem;
     UINavigationController *favoriteNav = [[UINavigationController alloc] initWithRootViewController:favoriteVC];
     favoriteNav.navigationBar.translucent = NO;
@@ -50,8 +48,7 @@
     //我的
     MineViewController *mineVC = [[MineViewController alloc] init];
     mineVC.title = @"我的";
-    UITabBarItem* mineTabItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:4];
-    mineTabItem.title = mineVC.title;
+    UITabBarItem* mineTabItem = [[UITabBarItem alloc] initWithTitle:@"我的" image:[UIImage imageNamed:@"mine"] tag:4];
     mineVC.tabBarItem = mineTabItem;
     UINavigationController *mineNav = [[UINavigationController alloc] initWithRootViewController:mineVC];
     mineNav.navigationBar.translucent = NO;
