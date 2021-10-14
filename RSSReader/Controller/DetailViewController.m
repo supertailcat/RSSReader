@@ -12,6 +12,8 @@
 #import <WebKit/WKNavigationDelegate.h>
 #import "STCRSSItem.h"
 #import "DeviceDefine.h"
+#import "ItemsManager.h"
+#import "FavoriteManager.h"
 
 @interface DetailViewController ()<WKUIDelegate, WKNavigationDelegate>
 
@@ -29,7 +31,6 @@
     _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, AppWidth, AppHeight - NavigationBarHeight) configuration:config];
     _webView.UIDelegate = self;
     _webView.navigationDelegate = self;
-    
     NSMutableString *plainHTML = [[NSMutableString alloc] init];
     [plainHTML appendString:@"<html>"];
     [plainHTML appendString:@"<head>"];
@@ -48,6 +49,27 @@
     
     [_webView loadHTMLString:plainHTML baseURL:nil];
     [self.view addSubview:_webView];
+    
+    UIBarButtonItem *favoriteBtn = [[UIBarButtonItem alloc] initWithTitle:@"收藏" style:UIBarButtonItemStylePlain target:self action:@selector(addToFavorite:)];
+    self.navigationItem.rightBarButtonItem = favoriteBtn;
+}
+
+- (void)addToFavorite:(UIButton *)btn {
+    [[FavoriteManager sharedManager] addFavoriteItem:_item complicationBlock:^(BOOL success){
+        NSString *title = @"提示";
+        NSString *message = @"收藏失败";
+        if (success) {
+            message = @"收藏成功";
+        }
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:title
+                                                                           message:message
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {
+                                                                  }];
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {

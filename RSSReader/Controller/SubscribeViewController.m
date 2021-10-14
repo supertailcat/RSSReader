@@ -98,6 +98,30 @@
     return cell;
 }
 
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+-(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    [[SubscribeManager sharedManager] exchangeURLAtIndex:sourceIndexPath.row withURLAtIndex:destinationIndexPath.row];
+    [tableView exchangeSubviewAtIndex:sourceIndexPath.row withSubviewAtIndex:destinationIndexPath.row];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    switch (editingStyle) {
+        case UITableViewCellEditingStyleDelete:
+        {
+            [[SubscribeManager sharedManager] removeURLAtIndex:indexPath.row];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+            break;
+        default:
+            break;
+    }
+}
+
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"修改"
@@ -122,44 +146,7 @@
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == [[SubscribeManager sharedManager] getURLsNumber]) {
-        return UITableViewCellEditingStyleInsert;
-    } else {
-        return UITableViewCellEditingStyleDelete;
-    }
-}
-
--(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
--(void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
-{
-    [[SubscribeManager sharedManager] exchangeURLAtIndex:sourceIndexPath.row withURLAtIndex:destinationIndexPath.row];
-    [tableView exchangeSubviewAtIndex:sourceIndexPath.row withSubviewAtIndex:destinationIndexPath.row];
-}
-
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
-    switch (editingStyle) {
-        case UITableViewCellEditingStyleNone:
-        {
-        }
-            break;
-        case UITableViewCellEditingStyleDelete:
-        {
-            [[SubscribeManager sharedManager] deleteURLAtIndex:indexPath.row];
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }
-            break;
-        case UITableViewCellEditingStyleInsert:
-        {
-            [[SubscribeManager sharedManager] addURL:@"aa" atIndex:indexPath.row];
-            [tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        }
-            break;
-        default:
-            break;
-    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 @end

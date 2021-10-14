@@ -58,7 +58,7 @@
     [self save];
 }
 
-- (void)deleteURLAtIndex:(NSInteger)index {
+- (void)removeURLAtIndex:(NSInteger)index {
     [_URLsArray removeObjectAtIndex:index];
     [self save];
 }
