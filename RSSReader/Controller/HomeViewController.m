@@ -49,7 +49,7 @@
     [_tableView reloadData];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     self.navigationController.tabBarController.tabBar.hidden = NO;
 }
 

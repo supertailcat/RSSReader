@@ -50,14 +50,6 @@
     [self.view addSubview:_webView];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    self.navigationController.tabBarController.tabBar.hidden = NO;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    self.navigationController.tabBarController.tabBar.hidden = YES;
-}
-
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // 设置字体
     NSString *fontFamilyStr = @"document.getElementsByTagName('body')[0].style.fontFamily='PingFangSC-Medium';";

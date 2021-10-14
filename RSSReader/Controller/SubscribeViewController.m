@@ -44,6 +44,14 @@
     [SubscribeManager sharedManager];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.navigationController.tabBarController.tabBar.hidden = NO;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.tabBarController.tabBar.hidden = YES;
+}
+
 - (void)edit:(UIButton *)btn {
     if (_tableView.isEditing == NO) {
         [_tableView setEditing:YES animated:YES];
