@@ -45,18 +45,17 @@
 }
 
 - (void)updateItems {
-    //todo
     [_itemsArray removeAllObjects];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        Parser *parser = [[Parser alloc] init];
-        for(int index = 0; index < [[SubscribeManager sharedManager] URLsCount]; index++) {
+    for(int index = 0; index < [[SubscribeManager sharedManager] URLsCount]; index++) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            Parser *parser = [[Parser alloc] init];
             [parser parseByURL:[[NSURL alloc] initWithString:[[SubscribeManager sharedManager] URLsAtIndex:index]] addItemBlock:^(STCRSSItem *item) {
                 [self addItem:item];
             } reloadItemsBlock:^{
                 [self didUpdateItems];
             }];
-        }
-    });
+        });
+    }
 }
 
 - (void)didUpdateItems {

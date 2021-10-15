@@ -78,17 +78,15 @@
 }
 
 -(void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"mode"] isEqualToString:@"origin"]) {
-        return;
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"mode"] isEqualToString:@"simple"]) {
+        //设置字体
+        NSString *fontFamilyStr = @"document.getElementsByTagName('body')[0].style.fontFamily='PingFangSC-Medium';";
+        [webView evaluateJavaScript:fontFamilyStr completionHandler:nil];
+        //设置颜色
+        [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#000000'" completionHandler:nil];
+        //修改字体大小
+        [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"completionHandler:nil];
     }
-    //设置字体
-    NSString *fontFamilyStr = @"document.getElementsByTagName('body')[0].style.fontFamily='PingFangSC-Medium';";
-    [webView evaluateJavaScript:fontFamilyStr completionHandler:nil];
-    //设置颜色
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextFillColor= '#000000'" completionHandler:nil];
-    //修改字体大小
-    [ webView evaluateJavaScript:@"document.getElementsByTagName('body')[0].style.webkitTextSizeAdjust= '200%'"completionHandler:nil];
-    
 }
 
 //#pragma mark ------ < KVO > ------
